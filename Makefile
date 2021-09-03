@@ -56,14 +56,16 @@ _OBJ = \
 	random_numbers.o \
 	table_integer.o \
 	interpolate.o \
-	solve_equations.o \
+	ode_solvers.o \
 	string_operations.o \
 	calculus_table.o \
 	statistics.o \
 	calculus.o \
 	minimization.o \
+	root_finding.o \
 	camb_stuff.o \
 	multidark_stuff.o \
+	hod_functions.o \
 	cosmology_functions.o \
 	hmx.o \
 	
