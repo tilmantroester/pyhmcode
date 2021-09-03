@@ -1,10 +1,8 @@
-# Folders generated  during compile
-bin/
+f90wrap_pyhmcode/
+include/
+lib/
 build/
+bin/
 
-# Output file
-data/power.dat
-
-# Other crud
-.vscode/
-.fortls
+.vscode
+.DS_Store
