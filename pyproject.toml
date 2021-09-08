@@ -3,6 +3,10 @@ requires = [
     "setuptools>=42",
     "wheel",
     "f90wrap @ git+https://github.com/jameskermode/f90wrap.git",
+    "setuptools_scm[toml]>=3.4"
 ]
 
 build-backend = "setuptools.build_meta"
+
+[tool.setuptools_scm]
+write_to = "f90wrap_pyhmcode/pyhmcode/version.py"

@@ -16,6 +16,8 @@ HERE = os.path.abspath(os.path.dirname(__file__))
 
 os.makedirs(os.path.join(HERE, "f90wrap_pyhmcode/pyhmcode"), exist_ok=True)
 
+with open("README.md", "r", encoding="utf-8") as f:
+    long_description = f.read()
 
 def compile_library(env):
     subprocess.check_call(["make", "f90wrap"], env=env, cwd=HERE)
@@ -86,6 +88,15 @@ setup(name=              "pyhmcode",
       description=       "Python interface for HMCode",
       author=            "Tilman Troester",
       author_email=      "tilmantroester@gmail.com",
+      long_description=  long_description,
+      long_description_content_type="text/markdown",
+      url=               "https://github.com/tilmantroester/pyhmcode",
+      project_urls=      {"Bug Tracker": "https://github.com/tilmantroester/pyhmcode/issues",},
+      classifiers=       ["Programming Language :: Python :: 3",
+                          "Programming Language :: Fortran",
+                          "Topic :: Scientific/Engineering :: Astronomy",
+                          "License :: OSI Approved :: MIT License",
+                          "Operating System :: OS Independent",],
       package_dir=       {"": "f90wrap_pyhmcode/"},
       packages=          ["pyhmcode"],
       package_data=      {"pyhmcode": ["_pyhmcode*.so"]},

@@ -15,6 +15,9 @@ from pyhmcode.hmx import field_gas as field_gas
 from pyhmcode.hmx import field_stars as field_stars
 from pyhmcode.hmx import field_electron_pressure as field_electron_pressure
 
+from . import version
+__version__ = version.version
+
 class Cosmology(pyhmcode.cosmology_functions.cosmology):
     def __init__(self):
         super().__init__()
