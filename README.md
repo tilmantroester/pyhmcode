@@ -2,7 +2,7 @@
 
 This library provides a convenient interface to Alexander Mead's library, which underlies the HMCode and HMx codes to predict non-linear power spectra. For details on the Fortran version, refer to https://github.com/alexander-mead/HMcode.
 The `pyhmcode` interface uses the excellent [f90wrap](https://github.com/jameskermode/f90wrap) library to generate the python interface. This allows access to virtually all functionality in the library, although to speed up compilation, the interface is limited to commonly-used subroutines.
-If you use `pyhmcode`, please cite [Tröster, Mead et al. 2021]() and the relevant papers describing the model:
+If you use `pyhmcode`, please cite [Tröster, Mead et al. 2021](https://arxiv.org/abs/2109.04458) and the relevant papers describing the model:
 - HMCode2015: Mead et al. (2015; https://arxiv.org/abs/1505.07833)
 - HMCode2016: Mead et al. (2016; https://arxiv.org/abs/1602.02154)
 - HMCode2020: Mead et al. (2021; https://arxiv.org/abs/2009.01858)
