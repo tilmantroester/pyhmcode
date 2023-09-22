@@ -3,7 +3,7 @@ import numpy as np
 from pyhmcode.hmx import HMcode2015 as HMcode2015
 from pyhmcode.hmx import HMcode2016 as HMcode2016
 from pyhmcode.hmx import HMcode2020 as HMcode2020
-from pyhmcode.hmx import HMcode2020_feedback as HMcode2020_feedback
+from pyhmcode.hmx import HMcode2020_feedback_lowkfix as HMcode2020_feedback
 
 from pyhmcode.hmx import HMx2020_matter_pressure_w_temp_scaling as HMx2020_matter_pressure_w_temp_scaling
 from pyhmcode.hmx import HMx2020_matter_w_temp_scaling as HMx2020_matter_w_temp_scaling
