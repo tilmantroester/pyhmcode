@@ -24,7 +24,7 @@ def ccl2hmcode_cosmo(ccl_cosmo, pofk_lin_z, pofk_lin_k_h, pofk_lin,
     if not np.isfinite(sigma8):
         sigma8 = ccl.sigma8(ccl_cosmo)
     hmcode_cosmo.sig8 = sigma8
-    hmcode_cosmo.m_nu = ccl_cosmo["m_nu"].sum()
+    hmcode_cosmo.m_nu = sum(ccl_cosmo["m_nu"])
 
     if log10_T_heat is not None:
         hmcode_cosmo.theat = 10**log10_T_heat
@@ -39,6 +39,8 @@ def ccl2hmcode_cosmo(ccl_cosmo, pofk_lin_z, pofk_lin_k_h, pofk_lin,
 class HaloProfileInterpolated(ccl.halos.HaloProfile):
     def __init__(self, interpolator, is_logk=True, is_logM=True,
                  is_logp=True, norm=None):
+        super().__init__(
+            mass_def=ccl.halos.MassDef(Delta="vir", rho_type="matter"))
         self.interpolator = interpolator
         self.is_logk = is_logk
         self.is_logM = is_logM
@@ -46,7 +48,7 @@ class HaloProfileInterpolated(ccl.halos.HaloProfile):
 
         self.norm = norm or 1
 
-    def _fourier(self, cosmo, k, M, a, mass_def):
+    def _fourier(self, cosmo, k, M, a):
         k_h = k/cosmo["h"]
         M_h = M*cosmo["h"]
 

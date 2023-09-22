@@ -95,18 +95,17 @@ profile_generator = pyhmcode.halo_profile_utils.HMxProfileGenerator(
 
 # Here we use the halo profile in the CCL halo model framework. 
 # First setup the CCL halo model specification
-mass_def = ccl.halos.MassDef("vir", 'matter')
-hmf = ccl.halos.MassFuncSheth99(ccl_cosmology, mass_def=mass_def,
+mass_def = ccl.halos.MassDef(Delta="vir", rho_type="matter")
+hmf = ccl.halos.MassFuncSheth99(mass_def=mass_def,
                                 mass_def_strict=False, use_delta_c_fit=True)
-hbf = ccl.halos.HaloBiasSheth99(ccl_cosmology, mass_def=mass_def,
+hbf = ccl.halos.HaloBiasSheth99(mass_def=mass_def,
                                 mass_def_strict=False, use_delta_c_fit=True)
-hmc = ccl.halos.HMCalculator(ccl_cosmology, hmf, hbf, mass_def)
+hmc = ccl.halos.HMCalculator(halo_bias=hbf, mass_function=hmf, mass_def=mass_def)
 
 # Compute the CCL halo model power spectrum, using the halo profile from HMx
 ccl_halomodel_pofk = ccl.halos.halomod_Pk2D(
                             cosmo=ccl_cosmology,
                             hmc=hmc, 
                             prof=profile_generator.matter_profile,
-                            normprof1=False,
                             a_arr=a, lk_arr=np.log(k*h))
 ```
