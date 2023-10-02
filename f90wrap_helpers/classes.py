@@ -42,9 +42,13 @@ class Cosmology(pyhmcode.cosmology_functions.cosmology):
         self.k_lin = np.asfortranarray(k, dtype=np.float64)
 
         pyhmcode.cosmology_functions.init_external_linear_power_tables(self, self.k_lin, self.a_lin, pk_lin)
-        pyhmcode.cosmology_functions.init_cosmology(self)
+        self._update()
 
         self._has_linear_power_set = True
+
+    def _update(self):
+        pyhmcode.cosmology_functions.init_cosmology(self)
+
 
 class Halomodel(pyhmcode.hmx.halomod):
     def __new__(cls, mode, verbose=False):
@@ -68,8 +72,6 @@ class Halomodel(pyhmcode.hmx.halomod):
     @As.setter
     def As(self, As):
         _pyhmcode.f90wrap_halomod__set__as(self._handle, As)
-
-
 
 
 def calculate_nonlinear_power_spectrum(cosmology, halomodel, fields=None,
@@ -101,6 +103,9 @@ def calculate_nonlinear_power_spectrum(cosmology, halomodel, fields=None,
 
     if not cosmology._has_linear_power_set:
         raise RuntimeError("Cosmology has no linear power spectrum set.")
+
+    # Update Fortran cosmology internal state 
+    cosmology._update()
 
     if halomodel.hmcode_version in [HMcode2015, HMcode2016, HMcode2020, HMcode2020_feedback]:
         fields = np.array([field_dmonly])
